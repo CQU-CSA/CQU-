@@ -17,6 +17,7 @@
 
 <div class="container">
     <div class="row">
+        {# 报名表单 #}
         <div class="col-sm">
             <div class="mx-auto">
 
@@ -52,19 +53,23 @@
 
             </div>
         </div>
+
+        {# markdown教程 #}
         <div class="col-sm">
             <div class="card">
+                {# markdown教程 #}
                 <div id="content" class="m-2"></div>
-                {#                    <div class="container">#}
-                {#                        <div class="row">#}
-                {#                        {% for foo in lists %}#}
-                {#                            <img src="/static/ICS/image/{{ foo }}.jpg" class="col-sm" style="width: 200px">#}
-                {#                        {% endfor %}#}
-                {#                        </div>#}
-                {#                    </div>#}
+                <div class="container">
+                    <div class="row">
+{#                        {% for foo in lists %}#}
+{#                            <img src="/static/ICS/image/{{ foo }}.jpg" class="col-sm" style="width: 200px">#}
+{#                        {% endfor %}#}
+                    </div>
+                </div>
             </div>
         </div>
 
+    {# 滚动列表，安卓教学 #}
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -94,6 +99,9 @@
 
     </div>
 </div>
+
+{% include 'ICS/tail.html' %}
+
 <script>
     $.get("{% static '/ICS/md/index.md'%}", function (response, status, xhr) {
         document.getElementById('content').innerHTML = marked(response);

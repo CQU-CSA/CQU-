@@ -3,6 +3,8 @@ from .WebJWC import WebJWC
 import time
 import os
 from hashlib import md5
+import random
+import json
 
 def getData(id,password):
     web = WebJWC(id,password)
@@ -32,10 +34,18 @@ def makeIcs(id,year,month,day):
     return data
 
 def makeApi(id):
+    with open('./CQUClassICS/res/jsonData/user.json','r',encoding='utf-8') as fp:
+        SQ = json.load(fp)
+        fp.close()
+    if id not in SQ[0].keys():
+        SQ[0][id]=str(random.randint(1,1<<16))
+        with open('./CQUClassICS/res/jsonData/user.json','w',encoding='utf-8') as fp:
+            json.dump(SQ,fp,ensure_ascii=False)
+            fp.close()
     with open('./CQUClassICS/res/icsData/%s.ics'%id,'rb') as fp:
         data = fp.read()
         md5v = md5()
-        md5v.update((id+id[1:4]).encode('utf8'))
+        md5v.update((id+SQ[0][id]).encode('utf8'))
         ids = md5v.hexdigest()
         open('./CQUClassICS/res/api/%s.ics'%ids,'wb').write(data)
         return ids
