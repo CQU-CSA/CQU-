@@ -76,18 +76,18 @@ class WebJWC:
 
     def getBody(self):
         self.driver.switch_to_frame('frmbody')
-        #time.sleep(1)
+        time.sleep(0.2)
         btn = self.driver.find_element_by_id('memuBarBtn3')
         btn.click()
-        #time.sleep(1)
+        time.sleep(0.2)
         btn = self.driver.find_element_by_xpath('//span[@value="../znpk/Pri_StuSel.aspx"]')
         btn.click()
-        #time.sleep(1)
+        time.sleep(0.2)
         self.driver.switch_to_frame('frmMain')
-        #time.sleep(1)
+        time.sleep(0.2)
         btn = self.driver.find_element_by_xpath('//input[@type="button"]')
         btn.click()
-        #time.sleep(1)
+        time.sleep(0.2)
         self.driver.switch_to_frame('frmRpt')
         text = self.driver.page_source
         open('./CQUClassICS/res/htmlData/body.html','w',encoding='utf8').write(text)
