@@ -30,6 +30,8 @@ class MainDataToICS:
                 weekDay = dayData[0]
                 dayNumber = re.findall(r'\d+',dayData)
                 DESCRIPTION = ''
+                if oneClassData['地点']=='':
+                    oneClassData['地点']='A课表无地点，请咨询老师！！！'
                 school = oneClassData['地点'][0]
                 if(school == "D"):
                     school=-1
